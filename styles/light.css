@@ -1,0 +1,26 @@
+/*
+  Специально для светлой темы при наличии класса.
+  Здесь окажутся стили, которые нужно переопределить принудительно,
+  переключая тему
+*/
+
+:root.theme-light {
+ --background-img-page: url(../images/cover-image-light.png);
+ --background-color: rgba(255, 241, 247, 1);
+ --second-color: rgba(53, 52, 48, 1);
+ --title-color: rgba(255, 194, 230, 1);  
+ --accent-color: rgba(255, 141, 203, 1);
+ --background-color-paragraph: var(--accent-color);
+ --text-color-paragraph: var(--second-color);
+ --text-color-subtitle: var(--second-color);
+ --hover-color: rgba(53, 52, 48, 0.4);
+
+  .rec__text {
+    display: none;
+  }
+
+  .footer__text {
+  text-shadow: 4px 4px 0 var(--accent-color);
+  }
+
+}
