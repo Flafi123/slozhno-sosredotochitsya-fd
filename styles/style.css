@@ -1,23 +1,23 @@
 /* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
-
 .page {
   /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
-  background-color: var(--background-color);
-  font-family: 'IBM Plex mono', sans-serif;
-  display: flex;
-  flex-direction: column;
-  max-width: 375px;
-}
-
-.header {
   background-image: var(--background-img-page);
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
+  background-color: var(--background-color);
+  font-family: 'IBM Plex mono', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {  
+  height: 100vh; /* полная высота экрана */
+  min-height: 668px;
   position: relative;
   display: grid;
-  height: 100vh;
   padding: 10px;
+
 }
 
 .decor__rec {
@@ -49,10 +49,9 @@
   margin-inline-start: 10px;
 }
 
-.header::after,
-.header::before,
-.footer::after,
-.footer::before {
+
+.decorated-zone::after,
+.decorated-zone::before {
   content: "";
   color: var(--second-color);
   position: absolute;
@@ -61,7 +60,7 @@
   height: 25px;
 }
 
-.header::before,.footer::before {
+.decorated-zone::before {
   margin-top: 10px;
   margin-right: 10px;
   top: 0px;
@@ -70,7 +69,7 @@
   border-right: 1px solid var(--second-color);
 
 }
-.header::after,.footer::after {
+.decorated-zone::after {
   margin-bottom: 10px;
   margin-left: 10px;
   left: 0px;
@@ -84,7 +83,6 @@
   position: relative;
   justify-self: end;
   margin-top: 65px;
-  
 }
 
 .header__theme-menu-list {
@@ -172,12 +170,6 @@
   padding: 0 10px;
 }
 
-.question-block {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
 .subtitle-block {
   display: flex;
   flex-direction: column;
@@ -198,7 +190,7 @@
   line-height: 23.4px;
 }
 
-.five-tips {
+.tips {
   font-weight: 400;
 }
 
@@ -231,13 +223,11 @@
   justify-self: center;
   color: var(--title-color);
   font-size: 117px;
+  text-shadow: 4px 4px 0 var(--accent-color);
+
 }
 
 @media (width >= 768px) {
-
-  .page {
-    max-width: 768px;
-  }
 
   .header {
     padding: 20px;
@@ -249,6 +239,8 @@
     grid-row: 2 / 3;
     align-self: center;
     justify-self: start;
+    text-wrap: nowrap;
+    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
   }
 
   .header .text-decor {
@@ -272,12 +264,12 @@
     margin-right: 20px;
   }
 
-  .header::after {
+  .decorated-zone::after {
     margin-bottom: 20px;
     margin-left: 20px;
   }
 
-  .header::before {
+  .decorated-zone::before {
     margin-top: 20px;
     margin-right: 20px;
   }
@@ -291,18 +283,30 @@
     
   .grid-block {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3,  1fr);
+    gap: 20px;
   }
-  
+
+  .grid-block .subtitle-block {
+    grid-column: 1 / 2;
+  }
+
+  .grid-subblocks {
+    grid-column: 1/4;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
   .grid-right .subtitle-block {
     grid-column: 2 / 4;
   }
   
-  .grid-bottom .subtitle-block{
+  .grid-subblocks .subtitle-block{
     grid-column: 1 / 4;
   }
 
-  .five-tips-title {
+  .tips-title {
     margin-bottom: 10px;
   }
 
@@ -347,19 +351,14 @@
     grid-column: 2 / 3;
   }
 
-  .footer::after {
-    margin-bottom: 20px;
-    margin-left: 20px;
-  }
-
-  .footer::before {
-    margin-top: 20px;
-    margin-right: 20px;
+  .footer__text {
+    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
   }
 
 }
 
 @media (width >= 1024px) {
+
   .page {
     max-width: 1024px;
   }
@@ -374,20 +373,26 @@
     flex-direction: row;
   }
 
-  .header__subtitle {
-    
-  }
-
-  .grid-bottom .subtitle-block{
-    grid-row: 2/3;
-    grid-column: span 1;
-  }
-
-  .footer__text {
-    font-size: 157px;
-  }
-
   .header .text-decor {
+    margin-top: -20px;
     align-self: center;  
   }
+
+  .grid-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .grid-subblocks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .grid-bottom .subtitle-block {
+    grid-column: 1 span;
+  }
+
+
+
 }
